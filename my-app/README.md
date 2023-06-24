@@ -1,70 +1,51 @@
-# Getting Started with Create React App
+# Spotlight - Live Video and Chat Web Application
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Description
+Spotlight is a web application that combines live streaming and real-time chat functionality. The live video streaming feature allows users to host and view live broadcasts, while the integrated chat feature enables real-time conversation between the viewers and the host. It's designed for those who want to host and participate in online events, e-learning, webinars, or any live interactive session.
 
-## Available Scripts
+## Features
 
-In the project directory, you can run:
+1. Live Video Streaming: Host live videos, giving users the ability to stream their content to viewers.
 
-### `npm start`
+2. Real-Time Chat: The built-in chat functionality allows viewers to interact with the host and other viewers in real time.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+3. User Registration: Before viewing the stream, users are required to enter their name.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Technologies Used
 
-### `npm test`
+- ReactJS: A JavaScript library for building user interfaces.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- Socket.IO: Enables real-time, bidirectional, and event-based communication between the browser and the server.
 
-### `npm run build`
+- Node.js: An open-source, cross-platform, back-end JavaScript runtime environment that executes JavaScript code outside a web browser.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- Express: A minimal and flexible Node.js web application framework that provides a robust set of features for web and mobile applications.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- PeerJS: A simple API for peer-to-peer data in the browser.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Setup
 
-### `npm run eject`
+To run this project, you will need Node.js installed on your local machine. If Node.js is not installed, you can download it from [here](https://nodejs.org/en/download/).
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+After you have Node.js installed, follow these steps:
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+1. Clone this repository.
+2. Install dependencies using `npm install`. 
+3. Run the application using `npm start`.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## Usage
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+Upon accessing the application, you will be prompted to enter your name. After entering your name, you will be able to view the live stream and participate in the chat.
 
-## Learn More
+## Contributing
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Spotlight is open for contributions. Before contributing, please ensure you have read the CONTRIBUTING.md.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## License
 
-### Code Splitting
+This project is licensed under the MIT License - see the LICENSE.md file for details.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## Disclaimer
 
-### Analyzing the Bundle Size
+This project is still under development and may have some bugs. Please use it at your own risk.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
