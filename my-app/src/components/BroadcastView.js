@@ -1,10 +1,11 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { ws, openPromise } from '../utils/WebSocketClient';
-import Chat from './Chat'
+import '../css/BroadcastView.css';
 
 function BroadcastView() {
   const videoRef = useRef(null);
   const peerConnection = useRef(new RTCPeerConnection());
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     navigator.mediaDevices.getUserMedia({ video: true })
@@ -27,13 +28,14 @@ function BroadcastView() {
       })
       .catch(err => {
         console.log("Something went wrong!", err);
+        setError("Live stream will be right back.");
       });
   }, []);
 
   return (
     <div className="BroadcastView">
       <video ref={videoRef} autoPlay playsInline />
-      <Chat/>
+      {error && <div>{error}</div>}
     </div>
   );
 }

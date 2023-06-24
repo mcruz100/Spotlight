@@ -1,61 +1,56 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import socketIOClient from 'socket.io-client';
-import '../css/Chat.css';
+import '../css/Chat.css'
 
-class Chat extends Component {
-  constructor() {
-    super();
-    this.state = {
-      message: '',
-      messages: [],
-      endpoint: "localhost:8080" // where socket.io server is running
+const Chat = ({ userName }) => {
+  const [message, setMessage] = useState('');
+  const [messages, setMessages] = useState([]);
+  const endpoint = 'http://localhost:8080'; // where socket.io server is running
+  const socket = socketIOClient(endpoint);
+
+  useEffect(() => {
+    socket.on('RECEIVE_MESSAGE', (data) => {
+      addMessage(data);
+    });
+
+    // Clean up the socket connection on component unmount
+    return () => {
+      socket.disconnect();
     };
-    this.socket = socketIOClient(this.state.endpoint);
-  }
+  }, [socket]);
 
-  componentDidMount() {
-    this.socket.on('RECEIVE_MESSAGE', (data) => {
-      this.addMessage(data);
-    });
-  }
+  const addMessage = (data) => {
+    setMessages((prevMessages) => [...prevMessages, data]);
+  };
 
-  addMessage = (data) => {
-    this.setState({
-      messages: [...this.state.messages, data]
-    });
-  }
-
-  sendMessage = (event) => {
+  const sendMessage = (event) => {
     event.preventDefault();
-    this.socket.emit('SEND_MESSAGE', {
-      author: this.props.userName,
-      message: this.state.message
+    socket.emit('SEND_MESSAGE', {
+      author: userName,
+      message: message,
     });
-    this.setState({message: ''});
-  }
+    setMessage('');
+  };
 
-  render() {
-    return (
-        <div className="chat-container">
-            <div className="chat-messages">
-                {this.state.messages.map((message, index) => {
-                    return (
-                        <div key={index}>{message.author}: {message.message}</div>
-                    )
-                })}
-            </div>
-            <form onSubmit={this.sendMessage} className="chat-form">
-                <input
-                    value={this.state.message}
-                    onChange={event => this.setState({message: event.target.value})}
-                    placeholder="Type your message here..."
-                />
-                <button>Send</button>
-            </form>
-        </div>
-    )
-    }
-
-}
+  return (
+    <div className="chat-container">
+      <div className="chat-messages">
+        {messages.map((message, index) => (
+          <div key={index}>
+            {message.author}: {message.message}
+          </div>
+        ))}
+      </div>
+      <form onSubmit={sendMessage} className="chat-form">
+        <input
+          value={message}
+          onChange={(event) => setMessage(event.target.value)}
+          placeholder="Type your message here..."
+        />
+        <button>Send</button>
+      </form>
+    </div>
+  );
+};
 
 export default Chat;
