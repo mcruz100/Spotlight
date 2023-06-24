@@ -32,11 +32,11 @@ class LiveStreamView extends Component {
           <NameEntry onUserNameSubmit={this.handleUserNameSubmit} />
         ) : (
           <div className="content">
-          <div className="video-container">
+          <div className="video-component">
             <BroadcastView />
           </div>
-          <div className="chat-container">
-            <Chat/>
+          <div className="chat-component">
+            <Chat userName={this.props.userName}/>
           </div>
         </div>
         )}

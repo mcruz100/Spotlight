@@ -5,31 +5,43 @@ import '../css/Chat.css'
 const Chat = ({ userName }) => {
   const [message, setMessage] = useState('');
   const [messages, setMessages] = useState([]);
+  const [isButtonActive, setButtonActive] = useState(false);
   const endpoint = 'http://localhost:8080'; // where socket.io server is running
-  const socket = socketIOClient(endpoint);
 
-  useEffect(() => {
-    socket.on('RECEIVE_MESSAGE', (data) => {
-      addMessage(data);
-    });
+  // useEffect(() => {
+  //   const socket = socketIOClient(endpoint);
 
-    // Clean up the socket connection on component unmount
-    return () => {
-      socket.disconnect();
-    };
-  }, [socket]);
+  //   socket.on('RECEIVE_MESSAGE', (data) => {
+  //     setMessages((prevMessages) => [...prevMessages, data]);
+  //   });
 
-  const addMessage = (data) => {
-    setMessages((prevMessages) => [...prevMessages, data]);
-  };
+  //   // Clean up the socket connection on component unmount
+  //   return () => {
+  //     socket.disconnect();
+  //   };
+  // }, []);
 
   const sendMessage = (event) => {
     event.preventDefault();
-    socket.emit('SEND_MESSAGE', {
-      author: userName,
-      message: message,
-    });
-    setMessage('');
+    if (message !== '') {
+      setMessages((prevMessages) => [...prevMessages, { author: userName, message: message }]);
+      setMessage('');
+      setButtonActive(false);
+    }
+  };
+
+  // const emitMessage = () => {
+  //   const socket = socketIOClient(endpoint);
+  //   socket.emit('SEND_MESSAGE', {
+  //     author: userName,
+  //     message: message,
+  //   });
+  //   socket.disconnect();
+  // };
+
+  const handleInputChange = (event) => {
+    setMessage(event.target.value);
+    setButtonActive(event.target.value !== '');
   };
 
   return (
@@ -37,17 +49,18 @@ const Chat = ({ userName }) => {
       <div className="chat-messages">
         {messages.map((message, index) => (
           <div key={index}>
-            {message.author}: {message.message}
+            <strong>{message.author}</strong>: {message.message}
           </div>
         ))}
       </div>
       <form onSubmit={sendMessage} className="chat-form">
         <input
+          type="text"
           value={message}
-          onChange={(event) => setMessage(event.target.value)}
+          onChange={handleInputChange}
           placeholder="Type your message here..."
         />
-        <button>Send</button>
+        <button className={isButtonActive ? 'active' : ''}>Send</button>
       </form>
     </div>
   );

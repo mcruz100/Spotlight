@@ -2,13 +2,19 @@ import React, { useState } from 'react';
 import NameEntry from './components/NameEntry';
 import LiveStreamView from './components/LiveStreamView';
 import Footer from './components/Footer'; 
-import NavigationBar from './components/NavigationBar';
+import Chat from './components/Chat';
+
 const App = () => {
   const [userName, setUserName] = useState("");
 
   return (
     <div className="App">
-      <NavigationBar/>
+       {
+        userName === "" 
+        ? <NameEntry onNameSubmit={setUserName} />
+        : <LiveStreamView userName={userName} />
+      }
+    <Footer />
     </div>
   );
 }
