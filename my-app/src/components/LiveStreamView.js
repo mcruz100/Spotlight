@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import BroadcastView from './BroadcastView';
 import NameEntry from './NameEntry';
+import NavigationBar from './NavigationBar';
+import Chat from './Chat';
+import '../css/LiveStreamView.css';
 
 class LiveStreamView extends Component {
 
@@ -23,11 +26,19 @@ class LiveStreamView extends Component {
 
   render() {
     return (
-      <div>
+      <div className="container">
+        <NavigationBar />
         {this.props.userName === null ? (
           <NameEntry onUserNameSubmit={this.handleUserNameSubmit} />
         ) : (
-          <BroadcastView />
+          <div className="content">
+            <div className="video-container">
+              <BroadcastView />
+            </div>
+            <div className="chat-container">
+              <Chat/>
+            </div>
+          </div>
         )}
       </div>
     );

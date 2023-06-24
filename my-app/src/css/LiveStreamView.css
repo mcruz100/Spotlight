@@ -1,0 +1,22 @@
+/* LiveStreamView.css */
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+  }
+  
+  .video-container {
+    flex-grow: 1;
+    max-width: 60%;
+    height: 600px; /* Adjust this value to suit your needs */
+    margin-right: 20px;
+    background-color: #ccc; /* Placeholder background color */
+  }
+  
+  .chat-container {
+    width: 30%; /* Adjust this value to suit your needs */
+    height: 600px; /* Adjust this value to suit your needs */
+    background-color: #eee; /* Placeholder background color */
+  }
+  
