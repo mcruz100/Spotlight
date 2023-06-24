@@ -1,0 +1,17 @@
+.BroadcastView {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
+  background-color: #ffffff;
+}
+
+.BroadcastView video {
+  width: 60%;
+  height: 60%;
+  background-color: #000000;
+}
+
+.BroadcastView .error {
+  color: #ff0000;
+}
