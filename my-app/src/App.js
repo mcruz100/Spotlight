@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import NameEntry from './components/NameEntry';
 import LiveStreamView from './components/LiveStreamView';
+import Footer from './components/Footer'; 
 
 const App = () => {
   const [userName, setUserName] = useState("");
@@ -12,6 +13,7 @@ const App = () => {
         ? <NameEntry onNameSubmit={setUserName} />
         : <LiveStreamView userName={userName} />
       }
+    <Footer />
     </div>
   );
 }

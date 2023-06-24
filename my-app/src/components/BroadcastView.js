@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import { ws, openPromise } from '../utils/WebSocketClient';
 import Chat from './Chat'
+
 function BroadcastView() {
   const videoRef = useRef(null);
   const peerConnection = useRef(new RTCPeerConnection());
